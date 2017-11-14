@@ -15,8 +15,16 @@ if(isset($_GET['city']) ? $_GET['city'] : ''){
     $dataArray= json_decode($urlData, true);
     $weather="The weather in ".$_GET['city']." is ".$dataArray['weather'][0]['description'].".";
     $tempC=$dataArray['main']['temp'] - 273.15;
-    $weather.=" and The Temperature is ".$tempC."&deg;C.";
-}
+    $tempMin=$dataArray['main']['temp_min'] - 273.15;
+    $tempMax=$dataArray['main']['temp_max'] - 273.15;        
+    $weather.="<br>The avg Temperature is ".$tempC."&deg;C.";
+    $weather.="<br>The min Temperature is ".$tempMin."&deg;C."; 
+    $weather.="<br>The Max Temperature is ".$tempMax."&deg;C.";        
+    $humidity=$dataArray['main']['humidity'];
+    $weather.="<br>The Humidity is ".$humidity;    
+    $pressure=$dataArray['main']['pressure'];
+    $weather.="<br> The pressure is ".$pressure;  
+    }
 ?>
 
 <!Doctype html>
@@ -91,39 +99,65 @@ if(isset($_GET['city']) ? $_GET['city'] : ''){
             .m-b-md {
                 margin-bottom: 30px;
             }
+            #city{
+                width:180px;
+                height:30px;
+
+            }
+            #weather{
+                color: white;
+                font-family: 'Raleway', sans-serif;
+                font-size: 15px;
+                font-weight:100px;
+                font-style: ;
+                background-color: black;
+                width: 300px;
+                padding: 2px;
+                margin: 25px;
+                height:150px;
+            }
+
+            
     
         </style>
 
         <link rel="stylesheet" href="<?php echo asset('css/home.css'); ?>" type="text/css">
-       <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
             <a class="navbar-brand" href="http://127.0.0.1:8000">Weather App</a>
-        </div>
+            </div>
             <ul class="nav navbar-nav">
             <li class="active"><a href="http://127.0.0.1:8000">Home</a></li>
-            </ul> 
-            <form class="navbar-form navbar-left">
+            </ul>
+        </div>
+        </nav>
+        <center>
+        <form class="form-inline">
             <div class="form-group">
             <label for="city"></label>
-                <input id="city" type="text" name="city" class="form-control" aria-descripedby="city" placeholder="Search" value="<?php if(isset($_GET['city']) ? $_GET['city'] : '')echo $_GET['city']?>">
+                <input id="city" type="text" name="city" class="form-control center-block " aria-descripedby="city" placeholder="Search" value="<?php if(isset($_GET['city']) ? $_GET['city'] : '')echo $_GET['city']?>">
             </div>
-            <button type="submit" class="btn btn-warning">Submit</button>
+            <button type="submit" class="btn btn-warning center-block form-control">Submit</button>
+            <br>
+        
             </form>
+            </center>
+            <center>
             <div id="weather">
              <?php
                  if(isset($weather)){
                  echo '<div class="alert" role="alert alert-primary">'.$weather.'</div>';
                  }
-                else{
-                 if(isset($city)!==""){
-                     echo '<a class ="alert alert-primary" role="alert"> No Result.</a>';
-                 }
-                }
+                // else{
+                //  if(isset($city)!==""){
+                //      echo '<a class ="alert alert-primary" role="alert"> No Result.</a>';
+                //  }
+                // }
 
              ?>
         </div>
-        </nav> 
+        </center>
         
     <body>
         <div class="container" style="width:100%;">  
