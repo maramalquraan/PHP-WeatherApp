@@ -23,7 +23,10 @@ if(isset($_GET['city']) ? $_GET['city'] : ''){
     $humidity=$dataArray['main']['humidity'];
     $weather.="<br>The Humidity is ".$humidity;    
     $pressure=$dataArray['main']['pressure'];
-    $weather.="<br> The pressure is ".$pressure;  
+    $weather.="<br> The pressure is ".$pressure;
+    $windSpeed=$dataArray['wind']['speed'];
+    $weather.="<br> Wind Speed is ".$windSpeed;
+
     }
 ?>
 
@@ -105,16 +108,16 @@ if(isset($_GET['city']) ? $_GET['city'] : ''){
 
             }
             #weather{
-                color: white;
-                font-family: 'Raleway', sans-serif;
+                color: black;
+                font-family: Georgia;
                 font-size: 15px;
                 font-weight:100px;
-                font-style: ;
-                background-color: black;
-                width: 300px;
-                padding: 2px;
+                font-style: bold;
+                /* background-color: black; */
+                /* width: 300px; */
+                /* padding: 2px;
                 margin: 25px;
-                height:150px;
+                height:180px; */
             }
 
             
@@ -136,7 +139,7 @@ if(isset($_GET['city']) ? $_GET['city'] : ''){
         <form class="form-inline">
             <div class="form-group">
             <label for="city"></label>
-                <input id="city" type="text" name="city" class="form-control center-block " aria-descripedby="city" placeholder="Search" value="<?php if(isset($_GET['city']) ? $_GET['city'] : '')echo $_GET['city']?>">
+                <input id="city" type="text" name="city" class="form-control center-block " aria-descripedby="city" placeholder="Your City Here .." value="<?php if(isset($_GET['city']) ? $_GET['city'] : '')echo $_GET['city']?>">
             </div>
             <button type="submit" class="btn btn-warning center-block form-control">Submit</button>
             <br>
@@ -144,6 +147,7 @@ if(isset($_GET['city']) ? $_GET['city'] : ''){
             </form>
             </center>
             <center>
+            <br>
             <div id="weather">
              <?php
                  if(isset($weather)){
@@ -173,7 +177,7 @@ if(isset($_GET['city']) ? $_GET['city'] : ''){
 			<center>
 			<div class="carousel-inner">
             <div class="item active">
-					<img src="https://www.timeanddate.com/scripts/cityog.php?title=14-Day%20Weather%20Forecast%20for&tint=0x007b7a&city=Amman&country=Jordan&image=amman1" style="width:80%;">
+					<img src="https://www.roughguides.com/wp-content/uploads/2016/10/17_picfair-271502830-asia-middle-east-jordan-amman_3000px-1-1575x1050.jpg" style="width:80%;">
 				</div>
 				<div class="item">
 					<img src="http://www.jordantimes.com/sites/default/files/styles/news_inner/public/478374c6143ba89684d5a2781b7b5cd1a050ad18.jpg?itok=zslsZXTX" style="width:80%;">
